@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="SplashTheme" parent="Theme.WeatherlyV2">
+        <item name="android:windowBackground">@drawable/wv2_splashscreen</item>
+
+        <item name="android:statusBarColor">@color/white</item>
+    </style>
+</resources>

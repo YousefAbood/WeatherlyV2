@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.meetingselect.weatherlyv2.main.Home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/citiesFragment"
+        android:name="com.meetingselect.weatherlyv2.main.Cities.CitiesFragment"
+        android:label="fragment_cities"
+        tools:layout="@layout/fragment_cities" />
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.meetingselect.weatherlyv2.main.Profile.Profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/searchCities"
+        android:name="com.meetingselect.weatherlyv2.main.Search.SearchCities"
+        android:label="fragment_search_cities"
+        tools:layout="@layout/fragment_search_cities" />
+</navigation>
