@@ -15,7 +15,6 @@
         android:layout_height="match_parent"
         tools:ignore="SpeakableTextPresentCheck">
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/home_thirdmainheadlayout_constraintlayout"
             android:layout_width="match_parent"
@@ -75,9 +74,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="64dp"
-                android:fontFamily="@font/cabin_medium"
+                android:layout_marginEnd="48dp"
                 android:text="Sunrise"
+                android:fontFamily="@font/cabin_medium"
                 android:textColor="@color/OfficialWhite"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toStartOf="@+id/home_sunrisetime_textview"
@@ -137,13 +136,12 @@
                 android:id="@+id/home_sunsetime_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="64dp"
+                android:layout_marginStart="48dp"
                 android:fontFamily="@font/cabin_medium"
-                android:text="05:24 AM"
+                android:text="09:18 PM"
                 android:textColor="@color/OfficialWhiteTransparent"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@+id/home_sunsetstring_textview"
-                app:layout_constraintEnd_toEndOf="@+id/home_barrierone_view"
                 app:layout_constraintStart_toEndOf="@+id/home_sunsetstring_textview"
                 app:layout_constraintTop_toTopOf="@+id/home_sunsetstring_textview" />
 
@@ -208,26 +206,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/home_precipitationstring_textview" />
 
             <TextView
-                android:id="@+id/home_currentcity_textview6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/cabin_medium"
-                android:text="Almere Stad, Netherlands"
-                android:textColor="@color/OfficialWhite"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="@+id/home_currenttemperature_textview"
-                app:layout_constraintHorizontal_bias="0.496"
-                app:layout_constraintStart_toStartOf="@+id/home_currenttemperature_textview"
-                app:layout_constraintTop_toBottomOf="@+id/home_currenttemperature_textview" />
-
-            <TextView
                 android:id="@+id/home_feelsliketemp_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
-                android:fontFamily="@font/cabin_medium"
                 android:text="Feels like 20.0°"
+                android:fontFamily="@font/cabin_medium"
                 android:textColor="@color/OfficialWhiteTransparent"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/home_circlebarrier_imageview"
