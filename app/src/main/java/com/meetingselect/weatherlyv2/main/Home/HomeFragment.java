@@ -38,6 +38,7 @@ import java.util.Calendar;
 import io.reactivex.Observer;
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -65,7 +66,10 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        SwipeRefreshLayout mSwipeRefreshLayout = view.findViewById(R.id.home_mainheadlayout_swiperefreshlayout);
+        changeStatusBarColorDay();
+
+        SwipeRefreshLayout mSwipeRefreshLayout = requireView().findViewById(R.id.home_mainheadlayout_swiperefreshlayout);
+        mSwipeRefreshLayout.setRefreshing(false);
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
             mSwipeRefreshLayout.setRefreshing(true);
             getWeatherConditions();
@@ -77,17 +81,17 @@ public class HomeFragment extends Fragment {
                 R.color.Official3rdPurple);
 
 
-        mSwipeRefreshLayout.setRefreshing(true);
+//        mSwipeRefreshLayout.setRefreshing(true);
         getWeatherConditions();
 
     }
 
     private void getWeatherConditions() {
 
+        ProgressBar progressBar = requireView().findViewById(R.id.home_progressbar_progressbar);
+
         ConstraintLayout layout = requireView().findViewById(R.id.home_thirdmainheadlayout_constraintlayout);
         layout.setVisibility(View.INVISIBLE);
-
-
 
         ImageView TodayWeatherIcon = requireView().findViewById(R.id.home_todaysweathericon_imageview);
         TextView TodaysDate = requireView().findViewById(R.id.home_todaysdate_textview);
@@ -149,7 +153,9 @@ public class HomeFragment extends Fragment {
                 Wind.setText(weatherForecast.getCurrent().getWindKph() + " km/h");
                 Pressure.setText(weatherForecast.getCurrent().getPressureMb() + " hPa");
 
+
                 initRecyclerViewWeatherForecast();
+                progressBar.setVisibility(View.INVISIBLE);
 
             }
 
@@ -164,6 +170,8 @@ public class HomeFragment extends Fragment {
 
             }
         });
+
+
 
 
 
@@ -267,7 +275,8 @@ public class HomeFragment extends Fragment {
             Log.d(TAG, "getLocation: " + latlong);
             return latlong;
         } else {
-            gpsLocation.showSettingsAlert();
+//            gpsLocation.showSettingsAlert();
+            Log.d(TAG, "getLocation: tt");
             return "nothing";
         }
     }
@@ -284,4 +293,5 @@ public class HomeFragment extends Fragment {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(ContextCompat.getColor(requireActivity(), R.color.Official3rdPurple));
     }
+
 }

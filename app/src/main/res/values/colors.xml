@@ -14,5 +14,5 @@
     <color name="Official3rdPurple">#4787F8</color>
     <color name="OfficialWhite">#F7F7F7</color>
     <color name="OfficialWhiteTransparent">#99F7F7F7</color>
-
+    <color name="OfficialDarkColour">#C2000000</color>
 </resources>

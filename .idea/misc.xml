@@ -3,18 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/YousefAl-Geefary/WeatherlyV2/app/src/main/res/drawable/cities_background_recyclerview.xml" value="0.24351851851851852" />
         <entry key="..\:/Users/YousefAl-Geefary/WeatherlyV2/app/src/main/res/drawable/ic_baseline_circle_24.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/YousefAl-Geefary/WeatherlyV2/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/YousefAl-Geefary/WeatherlyV2/app/src/main/res/drawable/ic_baseline_keyboard_arrow_down_24.xml" value="0.23333333333333334" />
         <entry key="..\:/Users/YousefAl-Geefary/WeatherlyV2/app/src/main/res/drawable/ic_baseline_keyboard_arrow_up_24.xml" value="0.23333333333333334" />
         <entry key="..\:/Users/YousefAl-Geefary/WeatherlyV2/app/src/main/res/drawable/officialbackground.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/YousefAl-Geefary/WeatherlyV2/app/src/main/res/drawable/searchcities_searchplatebg.xml" value="0.24351851851851852" />
         <entry key="..\:/Users/YousefAl-Geefary/WeatherlyV2/app/src/main/res/drawable/searchcity_background.xml" value="0.3828125" />
+        <entry key="..\:/Users/YousefAl-Geefary/WeatherlyV2/app/src/main/res/drawable/searchcity_searchbar_background.xml" value="0.3828125" />
         <entry key="..\:/Users/YousefAl-Geefary/WeatherlyV2/app/src/main/res/drawable/wv2_splashscreen.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/YousefAl-Geefary/WeatherlyV2/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/YousefAl-Geefary/WeatherlyV2/app/src/main/res/layout/cities_citylist_recyclerview.xml" value="0.5" />
         <entry key="..\:/Users/YousefAl-Geefary/WeatherlyV2/app/src/main/res/layout/fragment_cities.xml" value="0.2151268115942029" />
         <entry key="..\:/Users/YousefAl-Geefary/WeatherlyV2/app/src/main/res/layout/fragment_home.xml" value="0.33" />
-        <entry key="..\:/Users/YousefAl-Geefary/WeatherlyV2/app/src/main/res/layout/fragment_search_cities.xml" value="0.26811594202898553" />
+        <entry key="..\:/Users/YousefAl-Geefary/WeatherlyV2/app/src/main/res/layout/fragment_profile.xml" value="0.22418478260869565" />
+        <entry key="..\:/Users/YousefAl-Geefary/WeatherlyV2/app/src/main/res/layout/fragment_search_cities.xml" value="0.25" />
         <entry key="..\:/Users/YousefAl-Geefary/WeatherlyV2/app/src/main/res/layout/home_weatherforecast_recyclerview.xml" value="0.5" />
+        <entry key="..\:/Users/YousefAl-Geefary/WeatherlyV2/app/src/main/res/layout/searchcities_cityresults_recyclerview.xml" value="0.5" />
         <entry key="..\:/Users/YousefAl-Geefary/WeatherlyV2/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.3625" />
       </map>
     </option>

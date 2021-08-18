@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/home_mainheadlayout_swiperefreshlayout"
+    android:id="@+id/home_mainheadlayout_constraintlayout"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,342 +9,364 @@
     android:scrollbars="vertical"
     tools:context=".main.Home.HomeFragment">
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/home_secondmainheadlayout_nestedscrollview"
+    <ProgressBar
+        android:id="@+id/home_progressbar_progressbar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/home_mainheadlayout_swiperefreshlayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/home_mainheadlayout_swiperefreshlayout"
+        app:layout_constraintTop_toTopOf="@+id/home_mainheadlayout_swiperefreshlayout" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/home_mainheadlayout_swiperefreshlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:ignore="SpeakableTextPresentCheck">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/home_thirdmainheadlayout_constraintlayout"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/home_secondmainheadlayout_nestedscrollview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            tools:ignore="SpeakableTextPresentCheck">
 
-            <ImageView
-                android:id="@+id/home_todaysweathericon_imageview"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/sunnyicon"
-                app:layout_constraintEnd_toStartOf="@+id/home_todaystring_textview"
-                app:layout_constraintTop_toTopOf="@+id/home_todaystring_textview" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/home_thirdmainheadlayout_constraintlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/home_todaystring_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:fontFamily="@font/cabin_medium"
-                android:text="@string/home_today_string"
-                android:textColor="@color/OfficialWhite"
-                android:textSize="34sp"
-                app:layout_constraintEnd_toEndOf="@+id/home_currenttemperature_textview"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/home_currenttemperature_textview"
-                app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/home_todaysweathericon_imageview"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/sunnyicon"
+                    app:layout_constraintEnd_toStartOf="@+id/home_todaystring_textview"
+                    app:layout_constraintTop_toTopOf="@+id/home_todaystring_textview" />
 
-            <TextView
-                android:id="@+id/home_currentcity_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/cabin_medium"
-                android:text="Almere Stad, Netherlands"
-                android:textColor="@color/OfficialWhite"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="@+id/home_currenttemperature_textview"
-                app:layout_constraintHorizontal_bias="0.496"
-                app:layout_constraintStart_toStartOf="@+id/home_currenttemperature_textview"
-                app:layout_constraintTop_toBottomOf="@+id/home_currenttemperature_textview" />
+                <TextView
+                    android:id="@+id/home_todaystring_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="@font/cabin_medium"
+                    android:text="@string/home_today_string"
+                    android:textColor="@color/OfficialWhite"
+                    android:textSize="34sp"
+                    app:layout_constraintEnd_toEndOf="@+id/home_currenttemperature_textview"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/home_currenttemperature_textview"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/home_precipitationstring_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/cabin_medium"
-                android:text="Precipitation"
-                android:textColor="@color/OfficialWhite"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@+id/home_sunrisestring_textview"
-                app:layout_constraintTop_toBottomOf="@+id/home_sunrisestring_textview" />
+                <TextView
+                    android:id="@+id/home_currentcity_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/cabin_medium"
+                    android:text="Almere Stad, Netherlands"
+                    android:textColor="@color/OfficialWhite"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@+id/home_currenttemperature_textview"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="@+id/home_currenttemperature_textview"
+                    app:layout_constraintTop_toBottomOf="@+id/home_currenttemperature_textview" />
 
-            <TextView
-                android:id="@+id/home_sunrisestring_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="48dp"
-                android:text="Sunrise"
-                android:fontFamily="@font/cabin_medium"
-                android:textColor="@color/OfficialWhite"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/home_sunrisetime_textview"
-                app:layout_constraintTop_toBottomOf="@+id/home_barrierone_view" />
+                <TextView
+                    android:id="@+id/home_precipitationstring_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/cabin_medium"
+                    android:text="Precipitation"
+                    android:textColor="@color/OfficialWhite"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/home_sunrisestring_textview"
+                    app:layout_constraintTop_toBottomOf="@+id/home_sunrisestring_textview" />
 
-            <TextView
-                android:id="@+id/home_sunsetstring_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:fontFamily="@font/cabin_medium"
-                android:text="Sunset"
-                android:textColor="@color/OfficialWhite"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/home_sunrisestring_textview"
-                app:layout_constraintStart_toEndOf="@+id/home_circlebarrier_imageview"
-                app:layout_constraintTop_toTopOf="@+id/home_sunrisestring_textview" />
+                <TextView
+                    android:id="@+id/home_sunrisestring_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="48dp"
+                    android:fontFamily="@font/cabin_medium"
+                    android:text="Sunrise"
+                    android:textColor="@color/OfficialWhite"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/home_sunrisetime_textview"
+                    app:layout_constraintTop_toBottomOf="@+id/home_barrierone_view" />
 
-            <TextView
-                android:id="@+id/home_windstring_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cabin_medium"
-                android:text="Wind"
-                android:textColor="@color/OfficialWhite"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/home_precipitationstring_textview"
-                app:layout_constraintStart_toStartOf="@+id/home_sunsetstring_textview"
-                app:layout_constraintTop_toTopOf="@+id/home_precipitationstring_textview" />
+                <TextView
+                    android:id="@+id/home_sunsetstring_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:fontFamily="@font/cabin_medium"
+                    android:text="Sunset"
+                    android:textColor="@color/OfficialWhite"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/home_sunrisestring_textview"
+                    app:layout_constraintStart_toEndOf="@+id/home_circlebarrier_imageview"
+                    app:layout_constraintTop_toTopOf="@+id/home_sunrisestring_textview" />
 
-            <TextView
-                android:id="@+id/home_pressurestring_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cabin_medium"
-                android:text="Pressure"
-                android:textColor="@color/OfficialWhite"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/home_humiditystring_textview"
-                app:layout_constraintStart_toStartOf="@+id/home_sunsetstring_textview"
-                app:layout_constraintTop_toTopOf="@+id/home_humiditystring_textview" />
+                <TextView
+                    android:id="@+id/home_windstring_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cabin_medium"
+                    android:text="Wind"
+                    android:textColor="@color/OfficialWhite"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/home_precipitationstring_textview"
+                    app:layout_constraintStart_toStartOf="@+id/home_sunsetstring_textview"
+                    app:layout_constraintTop_toTopOf="@+id/home_precipitationstring_textview" />
 
-            <TextView
-                android:id="@+id/home_sunrisetime_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="@font/cabin_medium"
-                android:text="05:24 AM"
-                android:textColor="@color/OfficialWhiteTransparent"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/home_sunrisestring_textview"
-                app:layout_constraintEnd_toStartOf="@+id/home_circlebarrier_imageview"
-                app:layout_constraintTop_toTopOf="@+id/home_sunrisestring_textview" />
+                <TextView
+                    android:id="@+id/home_pressurestring_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cabin_medium"
+                    android:text="Pressure"
+                    android:textColor="@color/OfficialWhite"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/home_humiditystring_textview"
+                    app:layout_constraintStart_toStartOf="@+id/home_sunsetstring_textview"
+                    app:layout_constraintTop_toTopOf="@+id/home_humiditystring_textview" />
 
-            <TextView
-                android:id="@+id/home_sunsetime_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="48dp"
-                android:fontFamily="@font/cabin_medium"
-                android:text="09:18 PM"
-                android:textColor="@color/OfficialWhiteTransparent"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/home_sunsetstring_textview"
-                app:layout_constraintStart_toEndOf="@+id/home_sunsetstring_textview"
-                app:layout_constraintTop_toTopOf="@+id/home_sunsetstring_textview" />
+                <TextView
+                    android:id="@+id/home_sunrisetime_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/cabin_medium"
+                    android:text="05:24 AM"
+                    android:textColor="@color/OfficialWhiteTransparent"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/home_sunrisestring_textview"
+                    app:layout_constraintEnd_toStartOf="@+id/home_circlebarrier_imageview"
+                    app:layout_constraintTop_toTopOf="@+id/home_sunrisestring_textview" />
 
-            <TextView
-                android:id="@+id/home_windspeed_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cabin_medium"
-                android:text="9.4 km/h"
-                android:textColor="@color/OfficialWhiteTransparent"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/home_windstring_textview"
-                app:layout_constraintStart_toStartOf="@+id/home_sunsetime_textview"
-                app:layout_constraintTop_toTopOf="@+id/home_windstring_textview" />
+                <TextView
+                    android:id="@+id/home_sunsetime_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="48dp"
+                    android:fontFamily="@font/cabin_medium"
+                    android:text="09:18 PM"
+                    android:textColor="@color/OfficialWhiteTransparent"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/home_sunsetstring_textview"
+                    app:layout_constraintStart_toEndOf="@+id/home_sunsetstring_textview"
+                    app:layout_constraintTop_toTopOf="@+id/home_sunsetstring_textview" />
 
-            <TextView
-                android:id="@+id/home_pressurepercentage_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cabin_medium"
-                android:text="1014 hPa"
-                android:textColor="@color/OfficialWhiteTransparent"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/home_pressurestring_textview"
-                app:layout_constraintStart_toStartOf="@+id/home_sunsetime_textview"
-                app:layout_constraintTop_toTopOf="@+id/home_pressurestring_textview" />
+                <TextView
+                    android:id="@+id/home_windspeed_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cabin_medium"
+                    android:text="9.4 km/h"
+                    android:textColor="@color/OfficialWhiteTransparent"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/home_windstring_textview"
+                    app:layout_constraintStart_toStartOf="@+id/home_sunsetime_textview"
+                    app:layout_constraintTop_toTopOf="@+id/home_windstring_textview" />
 
-            <TextView
-                android:id="@+id/home_precipitationpercentage_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cabin_medium"
-                android:text="100%"
-                android:textColor="@color/OfficialWhiteTransparent"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/home_precipitationstring_textview"
-                app:layout_constraintStart_toStartOf="@+id/home_sunrisetime_textview"
-                app:layout_constraintTop_toTopOf="@+id/home_precipitationstring_textview" />
+                <TextView
+                    android:id="@+id/home_pressurepercentage_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cabin_medium"
+                    android:text="1014 hPa"
+                    android:textColor="@color/OfficialWhiteTransparent"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/home_pressurestring_textview"
+                    app:layout_constraintStart_toStartOf="@+id/home_sunsetime_textview"
+                    app:layout_constraintTop_toTopOf="@+id/home_pressurestring_textview" />
 
-            <TextView
-                android:id="@+id/home_humiditypercentage_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cabin_medium"
-                android:text="69%"
-                android:textColor="@color/OfficialWhiteTransparent"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/home_humiditystring_textview"
-                app:layout_constraintStart_toStartOf="@+id/home_sunrisetime_textview"
-                app:layout_constraintTop_toTopOf="@+id/home_humiditystring_textview" />
+                <TextView
+                    android:id="@+id/home_precipitationpercentage_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cabin_medium"
+                    android:text="100%"
+                    android:textColor="@color/OfficialWhiteTransparent"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/home_precipitationstring_textview"
+                    app:layout_constraintStart_toStartOf="@+id/home_sunrisetime_textview"
+                    app:layout_constraintTop_toTopOf="@+id/home_precipitationstring_textview" />
 
-            <TextView
-                android:id="@+id/home_humiditystring_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/cabin_medium"
-                android:text="Humidity"
-                android:textColor="@color/OfficialWhite"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@+id/home_precipitationstring_textview"
-                app:layout_constraintTop_toBottomOf="@+id/home_precipitationstring_textview" />
+                <TextView
+                    android:id="@+id/home_humiditypercentage_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cabin_medium"
+                    android:text="69%"
+                    android:textColor="@color/OfficialWhiteTransparent"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/home_humiditystring_textview"
+                    app:layout_constraintStart_toStartOf="@+id/home_sunrisetime_textview"
+                    app:layout_constraintTop_toTopOf="@+id/home_humiditystring_textview" />
 
-            <TextView
-                android:id="@+id/home_feelsliketemp_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
-                android:text="Feels like 20.0°"
-                android:fontFamily="@font/cabin_medium"
-                android:textColor="@color/OfficialWhiteTransparent"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/home_circlebarrier_imageview"
-                app:layout_constraintEnd_toStartOf="@+id/home_circlebarrier_imageview"
-                app:layout_constraintTop_toTopOf="@+id/home_circlebarrier_imageview" />
+                <TextView
+                    android:id="@+id/home_humiditystring_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/cabin_medium"
+                    android:text="Humidity"
+                    android:textColor="@color/OfficialWhite"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/home_precipitationstring_textview"
+                    app:layout_constraintTop_toBottomOf="@+id/home_precipitationstring_textview" />
 
-            <TextView
-                android:id="@+id/home_toptemptoday_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:fontFamily="@font/cabin_medium"
-                android:text="23.0°"
-                android:textColor="@color/OfficialWhiteTransparent"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/home_uparrow_imageview"
-                app:layout_constraintStart_toEndOf="@+id/home_uparrow_imageview"
-                app:layout_constraintTop_toTopOf="@+id/home_uparrow_imageview" />
+                <TextView
+                    android:id="@+id/home_feelsliketemp_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/cabin_medium"
+                    android:text="Feels like 20.0°"
+                    android:textColor="@color/OfficialWhiteTransparent"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/home_circlebarrier_imageview"
+                    app:layout_constraintEnd_toStartOf="@+id/home_circlebarrier_imageview"
+                    app:layout_constraintTop_toTopOf="@+id/home_circlebarrier_imageview" />
 
-            <TextView
-                android:id="@+id/home_lowesttemptoday_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:fontFamily="@font/cabin_medium"
-                android:text="13.4°"
-                android:textColor="@color/OfficialWhiteTransparent"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/home_downarrow_imageview"
-                app:layout_constraintStart_toEndOf="@+id/home_downarrow_imageview"
-                app:layout_constraintTop_toTopOf="@+id/home_downarrow_imageview" />
+                <TextView
+                    android:id="@+id/home_toptemptoday_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="@font/cabin_medium"
+                    android:text="23.0°"
+                    android:textColor="@color/OfficialWhiteTransparent"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/home_uparrow_imageview"
+                    app:layout_constraintStart_toEndOf="@+id/home_uparrow_imageview"
+                    app:layout_constraintTop_toTopOf="@+id/home_uparrow_imageview" />
 
-            <TextView
-                android:id="@+id/home_todaysdate_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cabin_medium"
-                android:text="Sat, July 03"
-                android:textColor="@color/OfficialWhiteTransparent"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/home_todaystring_textview"
-                app:layout_constraintTop_toBottomOf="@+id/home_todaystring_textview" />
+                <TextView
+                    android:id="@+id/home_lowesttemptoday_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="@font/cabin_medium"
+                    android:text="13.4°"
+                    android:textColor="@color/OfficialWhiteTransparent"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/home_downarrow_imageview"
+                    app:layout_constraintStart_toEndOf="@+id/home_downarrow_imageview"
+                    app:layout_constraintTop_toTopOf="@+id/home_downarrow_imageview" />
 
-            <TextView
-                android:id="@+id/home_currenttemperature_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/cabin_medium"
-                android:text="20.0°"
-                android:textColor="@color/OfficialWhite"
-                android:textSize="60sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/home_todaysweathericon_imageview" />
+                <TextView
+                    android:id="@+id/home_todaysdate_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cabin_medium"
+                    android:text="Sat, July 03"
+                    android:textColor="@color/OfficialWhiteTransparent"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/home_todaystring_textview"
+                    app:layout_constraintTop_toBottomOf="@+id/home_todaystring_textview" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/home_forecastview_recyclerview"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/home_barriertwo_view" />
+                <TextView
+                    android:id="@+id/home_currenttemperature_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/cabin_medium"
+                    android:text="20.0°"
+                    android:textColor="@color/OfficialWhite"
+                    android:textSize="60sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/home_todaysweathericon_imageview" />
 
-            <ImageView
-                android:id="@+id/home_circlebarrier_imageview"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:layout_marginTop="24dp"
-                android:src="@drawable/ic_baseline_circle_24"
-                app:layout_constraintEnd_toEndOf="@+id/home_currentcity_textview"
-                app:layout_constraintHorizontal_bias="0.48"
-                app:layout_constraintStart_toStartOf="@+id/home_currentcity_textview"
-                app:layout_constraintTop_toBottomOf="@+id/home_currentcity_textview" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/home_forecastview_recyclerview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/home_barriertwo_view" />
 
-            <ImageView
-                android:id="@+id/home_uparrow_imageview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:src="@drawable/ic_baseline_keyboard_arrow_up_24"
-                app:layout_constraintBottom_toBottomOf="@+id/home_circlebarrier_imageview"
-                app:layout_constraintStart_toEndOf="@+id/home_circlebarrier_imageview"
-                app:layout_constraintTop_toTopOf="@+id/home_circlebarrier_imageview" />
+                <ImageView
+                    android:id="@+id/home_circlebarrier_imageview"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="24dp"
+                    android:src="@drawable/ic_baseline_circle_24"
+                    app:layout_constraintEnd_toEndOf="@+id/home_currentcity_textview"
+                    app:layout_constraintHorizontal_bias="0.48"
+                    app:layout_constraintStart_toStartOf="@+id/home_currentcity_textview"
+                    app:layout_constraintTop_toBottomOf="@+id/home_currentcity_textview" />
 
-            <ImageView
-                android:id="@+id/home_downarrow_imageview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
-                app:layout_constraintBottom_toBottomOf="@+id/home_circlebarrier_imageview"
-                app:layout_constraintStart_toEndOf="@+id/home_toptemptoday_textview"
-                app:layout_constraintTop_toTopOf="@+id/home_circlebarrier_imageview" />
+                <ImageView
+                    android:id="@+id/home_uparrow_imageview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_up_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/home_circlebarrier_imageview"
+                    app:layout_constraintStart_toEndOf="@+id/home_circlebarrier_imageview"
+                    app:layout_constraintTop_toTopOf="@+id/home_circlebarrier_imageview" />
 
-
-            <View
-                android:id="@+id/home_barrierone_view"
-                android:layout_width="0dp"
-                android:layout_height="0.5dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                android:background="@color/OfficialWhiteTransparent"
-                app:layout_constraintEnd_toEndOf="@+id/home_lowesttemptoday_textview"
-                app:layout_constraintStart_toStartOf="@+id/home_feelsliketemp_textview"
-                app:layout_constraintTop_toBottomOf="@+id/home_circlebarrier_imageview" />
-
-            <View
-                android:id="@+id/home_barriertwo_view"
-                android:layout_width="0dp"
-                android:layout_height="0.5dp"
-                android:layout_marginTop="16dp"
-                android:background="@color/OfficialWhiteTransparent"
-                app:layout_constraintEnd_toEndOf="@+id/home_barrierone_view"
-                app:layout_constraintStart_toStartOf="@+id/home_barrierone_view"
-                app:layout_constraintTop_toBottomOf="@+id/home_humiditystring_textview" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5" />
+                <ImageView
+                    android:id="@+id/home_downarrow_imageview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/home_circlebarrier_imageview"
+                    app:layout_constraintStart_toEndOf="@+id/home_toptemptoday_textview"
+                    app:layout_constraintTop_toTopOf="@+id/home_circlebarrier_imageview" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <View
+                    android:id="@+id/home_barrierone_view"
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:background="@color/OfficialWhiteTransparent"
+                    app:layout_constraintEnd_toEndOf="@+id/home_lowesttemptoday_textview"
+                    app:layout_constraintStart_toStartOf="@+id/home_feelsliketemp_textview"
+                    app:layout_constraintTop_toBottomOf="@+id/home_circlebarrier_imageview" />
+
+                <View
+                    android:id="@+id/home_barriertwo_view"
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/OfficialWhiteTransparent"
+                    app:layout_constraintEnd_toEndOf="@+id/home_barrierone_view"
+                    app:layout_constraintStart_toStartOf="@+id/home_barrierone_view"
+                    app:layout_constraintTop_toBottomOf="@+id/home_humiditystring_textview" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
 
 
-    </androidx.core.widget.NestedScrollView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

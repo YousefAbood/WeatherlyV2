@@ -14,7 +14,11 @@
         android:id="@+id/citiesFragment"
         android:name="com.meetingselect.weatherlyv2.main.Cities.CitiesFragment"
         android:label="fragment_cities"
-        tools:layout="@layout/fragment_cities" />
+        tools:layout="@layout/fragment_cities" >
+        <action
+            android:id="@+id/action_citiesFragment_self"
+            app:destination="@id/citiesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profile"
         android:name="com.meetingselect.weatherlyv2.main.Profile.Profile"
@@ -24,5 +28,11 @@
         android:id="@+id/searchCities"
         android:name="com.meetingselect.weatherlyv2.main.Search.SearchCities"
         android:label="fragment_search_cities"
-        tools:layout="@layout/fragment_search_cities" />
+        tools:layout="@layout/fragment_search_cities" >
+        <action
+            android:id="@+id/action_searchCities_to_citiesFragment"
+            app:destination="@id/citiesFragment"
+            app:popUpTo="@id/searchCities"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

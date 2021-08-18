@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/citiesRV_recyclerview_constraintlayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/cities_background_recyclerview">
+
+    <TextView
+        android:id="@+id/citiesRV_temperature_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/cabin_medium"
+        android:text="31°"
+        android:textColor="@color/OfficialWhite"
+        android:textSize="48sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/citiesRV_cityname_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cabin_medium"
+        android:text="Tokyo"
+        android:textColor="@color/OfficialWhite"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/citiesRV_temperature_string"
+        app:layout_constraintTop_toBottomOf="@+id/citiesRV_temperature_string" />
+
+    <TextView
+        android:id="@+id/citiesRV_countryname_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cabin_medium"
+        android:text="Japan"
+        android:textColor="@color/OfficialWhiteTransparent"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/citiesRV_cityname_string"
+        app:layout_constraintTop_toBottomOf="@+id/citiesRV_cityname_string" />
+
+    <TextView
+        android:id="@+id/citiesRV_precipitationstring_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/cabin_medium"
+        android:text="Precipitation"
+        android:textColor="@color/OfficialWhite"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/citiesRV_countryname_string"
+        app:layout_constraintTop_toBottomOf="@+id/citiesRV_countryname_string" />
+
+    <TextView
+        android:id="@+id/citiesRV_humiditystring_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/cabin_medium"
+        android:text="Humidity"
+        android:textColor="@color/OfficialWhite"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/citiesRV_precipitationstring_string"
+        app:layout_constraintTop_toBottomOf="@+id/citiesRV_precipitationstring_string" />
+
+    <TextView
+        android:id="@+id/citiesRV_precipitation_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/cabin_medium"
+        android:text="100%"
+        android:textColor="@color/OfficialWhiteTransparent"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/citiesRV_precipitationstring_string"
+        app:layout_constraintStart_toEndOf="@+id/citiesRV_precipitationstring_string"
+        app:layout_constraintTop_toTopOf="@+id/citiesRV_precipitationstring_string" />
+
+    <TextView
+        android:id="@+id/citiesRV_humidity_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cabin_medium"
+        android:text="100%"
+        android:textColor="@color/OfficialWhiteTransparent"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/citiesRV_humiditystring_string"
+        app:layout_constraintEnd_toEndOf="@+id/citiesRV_precipitation_string"
+        app:layout_constraintStart_toStartOf="@+id/citiesRV_precipitation_string"
+        app:layout_constraintTop_toTopOf="@+id/citiesRV_humiditystring_string" />
+
+    <TextView
+        android:id="@+id/citiesRV_windstring_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/cabin_medium"
+        android:text="Wind"
+        android:textColor="@color/OfficialWhite"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/citiesRV_precipitation_string"
+        app:layout_constraintStart_toEndOf="@+id/citiesRV_precipitation_string"
+        app:layout_constraintTop_toTopOf="@+id/citiesRV_precipitation_string" />
+
+    <TextView
+        android:id="@+id/citiesRV_wind_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cabin_medium"
+        android:text="100 km/h"
+        android:textColor="@color/OfficialWhiteTransparent"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/citiesRV_windstring_string"
+        app:layout_constraintStart_toStartOf="@+id/citiesRV_pressure_string"
+        app:layout_constraintTop_toTopOf="@+id/citiesRV_windstring_string" />
+
+    <TextView
+        android:id="@+id/citiesRV_pressurestring_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cabin_medium"
+        android:text="Pressure"
+        android:textColor="@color/OfficialWhite"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/citiesRV_humiditystring_string"
+        app:layout_constraintStart_toStartOf="@+id/citiesRV_windstring_string"
+        app:layout_constraintTop_toTopOf="@+id/citiesRV_humiditystring_string" />
+
+    <TextView
+        android:id="@+id/citiesRV_pressure_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/cabin_medium"
+        android:text="1017 hPa"
+        android:textColor="@color/OfficialWhiteTransparent"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/citiesRV_humiditystring_string"
+        app:layout_constraintStart_toEndOf="@+id/citiesRV_pressurestring_string"
+        app:layout_constraintTop_toTopOf="@+id/citiesRV_humiditystring_string" />
+
+    <ImageView
+        android:id="@+id/citiesRV_currentweather_imageview"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/sunnyicon" />
+
+    <TextView
+        android:id="@+id/citiesRV_sunsetstring_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/cabin_medium"
+        android:text="Sunset"
+        android:textColor="@color/OfficialWhite"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/citiesRV_sunrisestring_string"
+        app:layout_constraintTop_toBottomOf="@+id/citiesRV_sunrisestring_string" />
+
+    <TextView
+        android:id="@+id/citiesRV_sunrisestring_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/cabin_medium"
+        android:text="Sunrise"
+        android:textColor="@color/OfficialWhite"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/citiesRV_temperature_string"
+        app:layout_constraintTop_toTopOf="@+id/citiesRV_temperature_string" />
+
+    <TextView
+        android:id="@+id/citiesRV_sunset_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/cabin_medium"
+        android:text="5:02 AM"
+        android:textColor="@color/OfficialWhiteTransparent"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/citiesRV_sunrisestring_string"
+        app:layout_constraintStart_toEndOf="@+id/citiesRV_sunrisestring_string"
+        app:layout_constraintTop_toTopOf="@+id/citiesRV_sunrisestring_string" />
+
+    <TextView
+        android:id="@+id/citiesRV_sunrise_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/cabin_medium"
+        android:text="6:02 PM"
+        android:textColor="@color/OfficialWhiteTransparent"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/citiesRV_sunsetstring_string"
+        app:layout_constraintStart_toEndOf="@+id/citiesRV_sunsetstring_string"
+        app:layout_constraintTop_toTopOf="@+id/citiesRV_sunsetstring_string" />
+
+    <ImageView
+        android:id="@+id/citiesRV_highesttemp_imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/citiesRV_cityname_string"
+        app:layout_constraintStart_toEndOf="@+id/citiesRV_cityname_string"
+        app:layout_constraintTop_toBottomOf="@+id/citiesRV_temperature_string"
+        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_up_24" />
+
+    <ImageView
+        android:id="@+id/citiesRV_lowesttemp_imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/citiesRV_lowesttemp_string"
+        app:layout_constraintStart_toEndOf="@+id/citiesRV_lowesttemp_string"
+        app:layout_constraintTop_toTopOf="@+id/citiesRV_lowesttemp_string"
+        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_down_24" />
+
+    <TextView
+        android:id="@+id/citiesRV_lowesttemp_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/cabin_medium"
+        android:text="100°"
+        android:textColor="@color/OfficialWhiteTransparent"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/citiesRV_highesttemp_imageview"
+        app:layout_constraintStart_toEndOf="@+id/citiesRV_highesttemp_imageview"
+        app:layout_constraintTop_toTopOf="@+id/citiesRV_highesttemp_imageview" />
+
+    <TextView
+        android:id="@+id/citiesRV_highesttemp_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/cabin_medium"
+        android:text="100°"
+        android:textColor="@color/OfficialWhiteTransparent"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/citiesRV_lowesttemp_imageview"
+        app:layout_constraintStart_toEndOf="@+id/citiesRV_lowesttemp_imageview"
+        app:layout_constraintTop_toTopOf="@+id/citiesRV_lowesttemp_imageview" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
