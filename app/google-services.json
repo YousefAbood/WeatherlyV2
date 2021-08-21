@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "280234764813",
+    "project_id": "weatherv2-2d5a0",
+    "storage_bucket": "weatherv2-2d5a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280234764813:android:3f7f7a54468ad2efab4344",
+        "android_client_info": {
+          "package_name": "com.meetingselect.weatherlyv2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "280234764813-k8rrui951nodrtiuqgp8g7ra8q46un8f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwnrrnm3GY1mjqFbsQWFMTUhyzYCdG0Qc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "280234764813-k8rrui951nodrtiuqgp8g7ra8q46un8f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,7 +2,6 @@ package com.meetingselect.weatherlyv2.main.Cities;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.database.CursorIndexOutOfBoundsException;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,10 +17,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.meetingselect.weatherlyv2.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.ViewHolder> {
 
@@ -117,7 +113,7 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.ViewHolder
         holder.AdapterLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String selectedCity = mCityList.get(position);
+                String selectedCity = mCityNameAdapter.get(position) + ", " + mCityList.get(position) + ", " + mCountryNameAdapter.get(position) + " ";
                 Log.d(TAG, "onClick: " + selectedCity);
                 onCityForecastClicked.onCityForecastClicked(selectedCity);
             }

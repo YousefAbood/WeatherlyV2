@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/profile_mainheadlayout_constraintlayout"
     android:layout_width="match_parent"
@@ -8,5 +9,102 @@
     tools:context=".main.Profile.Profile">
 
 
+    <TextView
+        android:id="@+id/profile_loginstatus_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/cabin_bold"
+        android:text="You are not Logged In"
+        android:textColor="@color/OfficialWhite"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/profile_logout_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/cabin_bold"
+        android:text="Log Out"
+        android:textColor="@color/OfficialWhite"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/profile_actualemailaddress_string"
+        app:layout_constraintStart_toStartOf="@+id/profile_actualemailaddress_string"
+        app:layout_constraintTop_toBottomOf="@+id/profile_actualemailaddress_string" />
+
+    <Button
+        android:id="@+id/profile_loginin_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/login_signup_button_bg"
+        android:text="Log In"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/profile_loginstatus_string"
+        app:layout_constraintTop_toBottomOf="@+id/profile_loginstatus_string"
+        tools:visibility="gone" />
+
+    <TextView
+        android:id="@+id/profile_orstring_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/cabin_medium"
+        android:text="or"
+        android:textColor="@color/OfficialWhiteTransparent"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_loginin_button"
+        tools:visibility="gone" />
+
+    <Button
+        android:id="@+id/profile_signup_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/login_signup_button_bg"
+        android:text="Sign Up"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/profile_loginin_button"
+        app:layout_constraintStart_toStartOf="@+id/profile_loginin_button"
+        app:layout_constraintTop_toBottomOf="@+id/profile_orstring_string"
+        tools:visibility="gone" />
+
+    <TextView
+        android:id="@+id/profile_emailaddressstring_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/cabin_medium"
+        android:text="Email Address"
+        android:textColor="@color/OfficialWhite"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_loginstatus_string"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/profile_actualemailaddress_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cabin_medium"
+        android:text="yalgeefary@gmail.com"
+        android:textColor="@color/OfficialWhiteTransparent"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/profile_emailaddressstring_string"
+        app:layout_constraintStart_toStartOf="@+id/profile_emailaddressstring_string"
+        app:layout_constraintTop_toBottomOf="@+id/profile_emailaddressstring_string"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

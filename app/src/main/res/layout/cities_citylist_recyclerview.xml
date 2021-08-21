@@ -180,7 +180,7 @@
         app:layout_constraintTop_toTopOf="@+id/citiesRV_temperature_string" />
 
     <TextView
-        android:id="@+id/citiesRV_sunset_string"
+        android:id="@+id/citiesRV_sunrise_string"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -193,16 +193,15 @@
         app:layout_constraintTop_toTopOf="@+id/citiesRV_sunrisestring_string" />
 
     <TextView
-        android:id="@+id/citiesRV_sunrise_string"
+        android:id="@+id/citiesRV_sunset_string"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:fontFamily="@font/cabin_medium"
         android:text="6:02 PM"
         android:textColor="@color/OfficialWhiteTransparent"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/citiesRV_sunsetstring_string"
-        app:layout_constraintStart_toEndOf="@+id/citiesRV_sunsetstring_string"
+        app:layout_constraintStart_toStartOf="@+id/citiesRV_sunrise_string"
         app:layout_constraintTop_toTopOf="@+id/citiesRV_sunsetstring_string" />
 
     <ImageView

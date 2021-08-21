@@ -49,6 +49,8 @@ public class HomeFragment extends Fragment {
 
     private final MutableLiveData<WeatherForecast> mWeatherForecastHomeFragLiveData = new MutableLiveData<>();
 
+    private CompositeDisposable mDisposable;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,10 +113,12 @@ public class HomeFragment extends Fragment {
         Log.d(TAG, "getWeatherConditions: " + getLocation());
         mainViewModel.getWeatherForecast(getLocation(), 4);
 
+        mDisposable = new CompositeDisposable();
+
         mainViewModel.getmWeatherForecastMVVM().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<WeatherForecast>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
-
+                mDisposable.add(d);
             }
 
             @Override
@@ -292,6 +296,19 @@ public class HomeFragment extends Fragment {
         Window window = requireActivity().getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(ContextCompat.getColor(requireActivity(), R.color.Official3rdPurple));
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mDisposable.clear();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mDisposable.clear();
     }
 
 }

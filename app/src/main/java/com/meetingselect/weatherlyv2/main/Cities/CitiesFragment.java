@@ -130,11 +130,11 @@ public class CitiesFragment extends Fragment implements CitiesAdapter.onCityFore
         for (int i = 0; i < cityNames.size(); i++) {
             Log.d(TAG, "getCitiesForecast: " + i);
             mainViewModel.getWeatherForecast(cityNames.get(i), 1);
-            mCityList.add(cityNames.get(i));
 
             Disposable disposable = mainViewModel.getmWeatherForecastMVVM().subscribe(v -> {
                 c++;
                 mCityName.add(v.getLocation().getName());
+                mCityList.add(v.getLocation().getRegion());
                 mCountryName.add(v.getLocation().getCountry());
                 mCurrentTemp.add(String.valueOf(v.getCurrent().getTempC()));
                 mCurrentWeatherConditionsCities.add(v.getCurrent().getCondition().getText());
@@ -235,5 +235,18 @@ public class CitiesFragment extends Fragment implements CitiesAdapter.onCityFore
 
         alertDialog.show();
 
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mDisposable.clear();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mDisposable.clear();
     }
 }

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profileLS_mainheadlayout_constraintlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/officialbackground"
+    tools:context=".main.Profile.LoginScreen">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profileLS_secondlayout_constraintlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/loginpage_custom_constraintlayout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.40">
+
+        <EditText
+            android:id="@+id/profileSS_password_editext"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/edittext_customlayout_loginpage"
+            android:drawableLeft="@drawable/ic_baseline_lock_24"
+            android:drawablePadding="12dp"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textColorHint="@color/OfficialDarkColour"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/profileSS_emailaddress_editext"
+            app:layout_constraintTop_toBottomOf="@+id/profileSS_password_textview" />
+
+        <EditText
+            android:id="@+id/profileSS_repeatpassword_editext"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/edittext_customlayout_loginpage"
+            android:drawableLeft="@drawable/ic_baseline_lock_24"
+            android:drawablePadding="12dp"
+            android:ems="10"
+            android:hint="Repeat Password"
+            android:inputType="textPassword"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textColorHint="@color/OfficialDarkColour"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/profileSS_emailaddress_editext"
+            app:layout_constraintTop_toBottomOf="@+id/profileSS_repeatpassword_textview" />
+
+        <EditText
+            android:id="@+id/profileSS_emailaddress_editext"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/edittext_customlayout_loginpage"
+            android:drawableLeft="@drawable/ic_baseline_email_24"
+            android:drawablePadding="12dp"
+            android:ems="10"
+            android:hint="Email Address"
+            android:inputType="textEmailAddress"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textColorHint="@color/OfficialDarkColour"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/profileSS_emailaddress_textview"
+            app:layout_constraintTop_toBottomOf="@+id/profileSS_emailaddress_textview" />
+
+        <TextView
+            android:id="@+id/profileSS_signupforweatherly_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/cabin_bold"
+            android:text="Sign up for a Weatherly account"
+            android:textColor="@color/Official3rdPurple"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/profileSS_emailaddress_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/cabin_bold"
+            android:text="Email Address"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profileSS_signupforweatherly_textview" />
+
+        <TextView
+            android:id="@+id/profileSS_password_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/cabin_bold"
+            android:text="Password"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/profileSS_emailaddress_editext"
+            app:layout_constraintTop_toBottomOf="@+id/profileSS_emailaddress_editext" />
+
+
+        <TextView
+            android:id="@+id/profileSS_repeatpassword_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/cabin_bold"
+            android:text="Repeat Password"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/profileSS_emailaddress_editext"
+            app:layout_constraintTop_toBottomOf="@+id/profileSS_password_editext" />
+
+        <Button
+            android:id="@+id/profileSS_signup_button"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+
+            android:background="@drawable/login_signup_button_bg"
+            android:text="Sign Up"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/profileSS_password_editext"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/profileSS_password_editext"
+            app:layout_constraintTop_toBottomOf="@+id/profileSS_repeatpassword_editext" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

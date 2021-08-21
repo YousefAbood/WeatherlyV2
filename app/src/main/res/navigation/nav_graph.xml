@@ -23,7 +23,17 @@
         android:id="@+id/profile"
         android:name="com.meetingselect.weatherlyv2.main.Profile.Profile"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profile_to_signUpScreen"
+            app:destination="@id/signUpScreen" />
+        <action
+            android:id="@+id/action_profile_to_loginScreen"
+            app:destination="@id/loginScreen" />
+        <action
+            android:id="@+id/action_profile_self"
+            app:destination="@id/profile" />
+    </fragment>
     <fragment
         android:id="@+id/searchCities"
         android:name="com.meetingselect.weatherlyv2.main.Search.SearchCities"
@@ -33,6 +43,27 @@
             android:id="@+id/action_searchCities_to_citiesFragment"
             app:destination="@id/citiesFragment"
             app:popUpTo="@id/searchCities"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginScreen"
+        android:name="com.meetingselect.weatherlyv2.main.Profile.LoginScreen"
+        android:label="LoginScreen" >
+        <action
+            android:id="@+id/action_loginScreen_to_profile"
+            app:destination="@id/profile"
+            app:popUpTo="@id/loginScreen"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpScreen"
+        android:name="com.meetingselect.weatherlyv2.main.Profile.SignUpScreen"
+        android:label="fragment_sign_up_screen"
+        tools:layout="@layout/fragment_sign_up_screen" >
+        <action
+            android:id="@+id/action_signUpScreen_to_profile"
+            app:destination="@id/profile"
+            app:popUpTo="@id/signUpScreen"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>
