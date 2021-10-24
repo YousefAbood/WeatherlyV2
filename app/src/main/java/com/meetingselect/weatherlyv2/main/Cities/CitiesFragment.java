@@ -1,7 +1,10 @@
 package com.meetingselect.weatherlyv2.main.Cities;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,7 +26,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import com.meetingselect.weatherlyv2.HelperClasses.GPSLocation;
 import com.meetingselect.weatherlyv2.HelperClasses.SpacingItemDecorator;
 import com.meetingselect.weatherlyv2.R;
 import com.meetingselect.weatherlyv2.data.Model.WeatherForecast.WeatherForecast;
@@ -114,54 +119,70 @@ public class CitiesFragment extends Fragment implements CitiesAdapter.onCityFore
         mPressureCities.clear();
         mSunriseTime.clear();
         mSunsetTime.clear();
-
-
-
-        MainViewModel mainViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-
-        List<String> cityNames = mainViewModel.getCityNamesFragment().getValue();
-
-        ProgressBar progressBar = requireView().findViewById(R.id.cities_progressbar_progressbar);
-
-
         mDisposable = new CompositeDisposable();
 
 
-        for (int i = 0; i < cityNames.size(); i++) {
-            Log.d(TAG, "getCitiesForecast: " + i);
-            mainViewModel.getWeatherForecast(cityNames.get(i), 1);
-
-            Disposable disposable = mainViewModel.getmWeatherForecastMVVM().subscribe(v -> {
-                c++;
-                mCityName.add(v.getLocation().getName());
-                mCityList.add(v.getLocation().getRegion());
-                mCountryName.add(v.getLocation().getCountry());
-                mCurrentTemp.add(String.valueOf(v.getCurrent().getTempC()));
-                mCurrentWeatherConditionsCities.add(v.getCurrent().getCondition().getText());
-                mCurrentWeatherConditionIconCities.add(v.getCurrent().getCondition().getIcon());
-                mMinTemperatureCities.add(String.valueOf(v.getForecast().getForecastday().get(0).getDay().getMintempC()));
-                mMaxTemperatureCities.add(String.valueOf(v.getForecast().getForecastday().get(0).getDay().getMaxtempC()));
-                mPrecipitaionCities.add(v.getCurrent().getPrecipMm() + "%");
-                mWindSpeedCities.add(v.getCurrent().getWindKph() + " km/h");
-                mHumidityCities.add(v.getCurrent().getHumidity() + "%");
-                mPressureCities.add(v.getCurrent().getPressureMb() + " hPa");
-                mSunriseTime.add(String.valueOf(v.getForecast().getForecastday().get(0).getAstro().getSunrise()));
-                mSunsetTime.add(String.valueOf(v.getForecast().getForecastday().get(0).getAstro().getSunset()));
-
-                Log.d(TAG, "getCitiesForecast: " + mCityName.size());
-
-                initRecyclerViewCities(mCityList, mCityName, mCountryName, mCurrentTemp, mCurrentWeatherConditionsCities, mCurrentWeatherConditionIconCities, mMinTemperatureCities, mMaxTemperatureCities, mPrecipitaionCities, mWindSpeedCities, mHumidityCities, mPressureCities, mSunsetTime, mSunriseTime, c);
+        counterEmptyCityList();
+        counterOnNoWifiOrLocation();
 
 
+        if(haveNetworkConnection()) {
 
-            });
+            MainViewModel mainViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+
+            List<String> cityNames = mainViewModel.getCityNamesFragment().getValue();
+
+            ProgressBar progressBar = requireView().findViewById(R.id.cities_progressbar_progressbar);
+
+            Log.d(TAG, "getCitiesForecastSize: " + cityNames.size());
+
+            if(!(cityNames.size() == 0)) {
+                for (int i = 0; i < cityNames.size(); i++) {
+                    Log.d(TAG, "getCitiesForecast: " + i);
+                    mainViewModel.getWeatherForecast(cityNames.get(i), 1);
+
+                    Disposable disposable = mainViewModel.getmWeatherForecastMVVM().subscribe(v -> {
+                        c++;
+                        mCityName.add(v.getLocation().getName());
+                        mCityList.add(v.getLocation().getRegion());
+                        mCountryName.add(v.getLocation().getCountry());
+                        mCurrentTemp.add(String.valueOf(v.getCurrent().getTempC()));
+                        mCurrentWeatherConditionsCities.add(v.getCurrent().getCondition().getText());
+                        mCurrentWeatherConditionIconCities.add(v.getCurrent().getCondition().getIcon());
+                        mMinTemperatureCities.add(String.valueOf(v.getForecast().getForecastday().get(0).getDay().getMintempC()));
+                        mMaxTemperatureCities.add(String.valueOf(v.getForecast().getForecastday().get(0).getDay().getMaxtempC()));
+                        mPrecipitaionCities.add(v.getCurrent().getPrecipMm() + "%");
+                        mWindSpeedCities.add(v.getCurrent().getWindKph() + " km/h");
+                        mHumidityCities.add(v.getCurrent().getHumidity() + "%");
+                        mPressureCities.add(v.getCurrent().getPressureMb() + " hPa");
+                        mSunriseTime.add(String.valueOf(v.getForecast().getForecastday().get(0).getAstro().getSunrise()));
+                        mSunsetTime.add(String.valueOf(v.getForecast().getForecastday().get(0).getAstro().getSunset()));
+
+                        Log.d(TAG, "getCitiesForecast: " + mCityName.size());
+
+                        initRecyclerViewCities(mCityList, mCityName, mCountryName, mCurrentTemp, mCurrentWeatherConditionsCities, mCurrentWeatherConditionIconCities, mMinTemperatureCities, mMaxTemperatureCities, mPrecipitaionCities, mWindSpeedCities, mHumidityCities, mPressureCities, mSunsetTime, mSunriseTime, c);
+
+                    });
+
+                    mDisposable.add(disposable);
+
+                }
+
+            } else {
+                emptyCityList();
+
+            }
 
 
 
-            mDisposable.add(disposable);
+        } else {
+
+            onNoWifiOrLocation();
 
 
         }
+
+
 
 
 
@@ -218,7 +239,6 @@ public class CitiesFragment extends Fragment implements CitiesAdapter.onCityFore
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         mainViewModel.removeCityName(cityName);
-                        Navigation.findNavController(requireView()).navigate(R.id.action_citiesFragment_self);
                         alertDialog = null;
                         dialog.dismiss();
                     }
@@ -241,12 +261,90 @@ public class CitiesFragment extends Fragment implements CitiesAdapter.onCityFore
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mDisposable.clear();
+
+        try {
+            mDisposable.clear();
+        } catch (NullPointerException e) {
+            Log.e(TAG, "onDestroy: ", e);
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        mDisposable.clear();
+        try {
+            mDisposable.clear();
+        } catch (NullPointerException e) {
+            Log.e(TAG, "onDestroy: ", e);
+        }
+
     }
+
+    private boolean haveNetworkConnection() {
+        boolean haveConnectedWifi = false;
+        boolean haveConnectedMobile = false;
+
+
+        ConnectivityManager cm = (ConnectivityManager) requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+        for (NetworkInfo ni : netInfo) {
+            if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+                if (ni.isConnected())
+                    haveConnectedWifi = true;
+            if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+                if (ni.isConnected())
+                    haveConnectedMobile = true;
+        }
+        return haveConnectedWifi || haveConnectedMobile;
+    }
+
+
+    private void emptyCityList() {
+
+        TextView emptyListString = requireView().findViewById(R.id.cities_nocitiesstring_string);
+        ProgressBar progressBar = requireView().findViewById(R.id.cities_progressbar_progressbar);
+
+
+        emptyListString.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.INVISIBLE);
+
+
+    }
+
+    private void onNoWifiOrLocation() {
+
+        TextView noWifiLocation = requireView().findViewById(R.id.cities_nowifinolocationstring_string);
+        ProgressBar progressBar = requireView().findViewById(R.id.cities_progressbar_progressbar);
+
+
+        noWifiLocation.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
+
+
+    }
+
+    private void counterEmptyCityList() {
+
+        TextView emptyListString = requireView().findViewById(R.id.cities_nocitiesstring_string);
+        ProgressBar progressBar = requireView().findViewById(R.id.cities_progressbar_progressbar);
+
+
+        emptyListString.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.INVISIBLE);
+
+
+    }
+
+    private void counterOnNoWifiOrLocation() {
+
+        TextView noWifiLocation = requireView().findViewById(R.id.cities_nowifinolocationstring_string);
+        ProgressBar progressBar = requireView().findViewById(R.id.cities_progressbar_progressbar);
+
+
+        noWifiLocation.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.INVISIBLE);
+
+
+    }
+
 }

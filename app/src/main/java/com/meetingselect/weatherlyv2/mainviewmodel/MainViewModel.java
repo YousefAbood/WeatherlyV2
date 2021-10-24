@@ -21,6 +21,7 @@ import com.meetingselect.weatherlyv2.main.Search.SearchCitiesRepo;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import io.reactivex.subjects.BehaviorSubject;
 
@@ -56,7 +57,7 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     public void addCityName(String cityName) {
-        List<String> newCityNames = new ArrayList<>(this.Cities.getValue());
+        List<String> newCityNames = new ArrayList<>(Objects.requireNonNull(this.Cities.getValue()));
 
 
         if(!newCityNames.contains(cityName)) {
@@ -71,15 +72,23 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     public void removeCityName(String cityName) {
-        List<String> newCityNames = new ArrayList<>(this.Cities.getValue());
+        List<String> newCityNames = new ArrayList<>(Objects.requireNonNull(this.Cities.getValue()));
+
+        List<String> cityNameList = new ArrayList<>();
+
+        cityNameList.add(cityName);
+
+        Log.d(TAG, "removeCityName: " + newCityNames);
+        Log.d(TAG, "removeCityName: " + cityNameList.get(0));
 
 
-        if(newCityNames.contains(cityName)) {
-            Log.d(TAG, "RemoveName: " + cityName + "successful.");
-            int position = newCityNames.indexOf(cityName);
-            newCityNames.remove(position);
+        try {
+
+            newCityNames.remove(cityNameList.get(0));
+        } catch (NullPointerException e) {
+
+            Log.e(TAG, "removeCityName: ", e);
         }
-
         Cities.setValue(Collections.unmodifiableList(newCityNames));
 
         sharedPreferences.edit().putString("cityNames", gson.toJson(newCityNames)).apply();

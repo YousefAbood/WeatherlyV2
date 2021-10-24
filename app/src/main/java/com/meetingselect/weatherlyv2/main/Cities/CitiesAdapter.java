@@ -113,7 +113,7 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.ViewHolder
         holder.AdapterLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String selectedCity = mCityNameAdapter.get(position) + ", " + mCityList.get(position) + ", " + mCountryNameAdapter.get(position) + " ";
+                String selectedCity = mCityNameAdapter.get(position) + ", " + mCityList.get(position) + ", " + mCountryNameAdapter.get(position);
                 Log.d(TAG, "onClick: " + selectedCity);
                 onCityForecastClicked.onCityForecastClicked(selectedCity);
             }

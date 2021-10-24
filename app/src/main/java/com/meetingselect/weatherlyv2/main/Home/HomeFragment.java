@@ -1,7 +1,10 @@
 package com.meetingselect.weatherlyv2.main.Home;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -32,6 +35,8 @@ import com.meetingselect.weatherlyv2.HelperClasses.GPSLocation;
 import com.meetingselect.weatherlyv2.R;
 import com.meetingselect.weatherlyv2.data.Model.WeatherForecast.WeatherForecast;
 import com.meetingselect.weatherlyv2.mainviewmodel.MainViewModel;
+
+import org.w3c.dom.Text;
 
 import java.util.Calendar;
 
@@ -91,6 +96,8 @@ public class HomeFragment extends Fragment {
     private void getWeatherConditions() {
 
         ProgressBar progressBar = requireView().findViewById(R.id.home_progressbar_progressbar);
+        TextView nowifistring = requireView().findViewById(R.id.home_nowifistring_string);
+        nowifistring.setVisibility(View.INVISIBLE);
 
         ConstraintLayout layout = requireView().findViewById(R.id.home_thirdmainheadlayout_constraintlayout);
         layout.setVisibility(View.INVISIBLE);
@@ -109,74 +116,83 @@ public class HomeFragment extends Fragment {
         TextView Wind = requireView().findViewById(R.id.home_windspeed_textview);
         TextView Pressure = requireView().findViewById(R.id.home_pressurepercentage_textview);
 
-        MainViewModel mainViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
         Log.d(TAG, "getWeatherConditions: " + getLocation());
-        mainViewModel.getWeatherForecast(getLocation(), 4);
 
         mDisposable = new CompositeDisposable();
 
-        mainViewModel.getmWeatherForecastMVVM().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<WeatherForecast>() {
-            @Override
-            public void onSubscribe(@NonNull Disposable d) {
-                mDisposable.add(d);
-            }
 
-            @Override
-            public void onNext(@NonNull WeatherForecast weatherForecast) {
+        GPSLocation gpsLocation = new GPSLocation(getActivity());
 
-                Log.d(TAG, "onNext: Success" );
-                // Forecast Days
-                mWeatherForecastHomeFragLiveData.setValue(weatherForecast);
+        if(haveNetworkConnection() && gpsLocation.canGetLocation()) {
 
-                Log.d(TAG, "onNext0: " + weatherForecast.getForecast().getForecastday().get(0).getDay().getCondition().getText());
-                Log.d(TAG, "onNext1: " + weatherForecast.getForecast().getForecastday().get(1).getDay().getCondition().getText());
-                Log.d(TAG, "onNext2: " + weatherForecast.getForecast().getForecastday().get(2).getDay().getCondition().getText());
+            MainViewModel mainViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+            mainViewModel.getWeatherForecast(getLocation(), 4);
+//            Log.d(TAG, "getWeatherConditions: " + mainView..getLocation().getName() + ", " + weatherForecast.getLocation().getCountry());
+            mainViewModel.getmWeatherForecastMVVM().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<WeatherForecast>() {
+                @Override
+                public void onSubscribe(@NonNull Disposable d) {
+                    mDisposable.add(d);
+                }
 
+                @Override
+                public void onNext(@NonNull WeatherForecast weatherForecast) {
 
-                // Today
-                Glide.with(requireActivity())
-                        .asBitmap()
-                        .load("https://" + weatherForecast.getForecast().getForecastday().get(0).getDay().getCondition().getIcon())
-                        .apply(new RequestOptions().override(80, 80))
-                        .into(TodayWeatherIcon);
+                    Log.d(TAG, "onNext: Success" );
+                    // Forecast Days
+                    mWeatherForecastHomeFragLiveData.setValue(weatherForecast);
 
-                String WeatherForecastDate = weatherForecast.getForecast().getForecastday().get(0).getDate();
-                String TodaysDateS = getDayOfWeek(WeatherForecastDate) + getMonth(WeatherForecastDate);
-                TodaysDate.setText(TodaysDateS);
-
-                CurrentTemperature.setText(String.valueOf(weatherForecast.getCurrent().getTempC()));
-                CurrentCity.setText(weatherForecast.getLocation().getName() + ", " + weatherForecast.getLocation().getCountry());
-                FeelsLikeTemp.setText("Feels like " + weatherForecast.getCurrent().getFeelslikeC());
-                TopTemp.setText(String.valueOf(weatherForecast.getForecast().getForecastday().get(0).getDay().getMaxtempC()));
-                LowTemp.setText(String.valueOf(weatherForecast.getForecast().getForecastday().get(0).getDay().getMintempC()));
-                SunriseTime.setText(String.valueOf(weatherForecast.getForecast().getForecastday().get(0).getAstro().getSunrise()));
-                SunsetTime.setText(String.valueOf(weatherForecast.getForecast().getForecastday().get(0).getAstro().getSunset()));
-                Log.d(TAG, "onNext: " + weatherForecast.getForecast().getForecastday().get(0).getAstro().getSunset());
-                Precipitation.setText(weatherForecast.getCurrent().getPrecipMm() + "%");
-                Humidity.setText(weatherForecast.getCurrent().getHumidity() + "%");
-                Wind.setText(weatherForecast.getCurrent().getWindKph() + " km/h");
-                Pressure.setText(weatherForecast.getCurrent().getPressureMb() + " hPa");
+                    Log.d(TAG, "onNext0: " + weatherForecast.getForecast().getForecastday().get(0).getDay().getCondition().getText());
+                    Log.d(TAG, "onNext1: " + weatherForecast.getForecast().getForecastday().get(1).getDay().getCondition().getText());
+                    Log.d(TAG, "onNext2: " + weatherForecast.getForecast().getForecastday().get(2).getDay().getCondition().getText());
 
 
-                initRecyclerViewWeatherForecast();
-                progressBar.setVisibility(View.INVISIBLE);
+                    // Today
+                    Glide.with(requireActivity())
+                            .asBitmap()
+                            .load("https://" + weatherForecast.getForecast().getForecastday().get(0).getDay().getCondition().getIcon())
+                            .apply(new RequestOptions().override(80, 80))
+                            .into(TodayWeatherIcon);
 
-            }
+                    String WeatherForecastDate = weatherForecast.getForecast().getForecastday().get(0).getDate();
+                    String TodaysDateS = getDayOfWeek(WeatherForecastDate) + getMonth(WeatherForecastDate);
+                    TodaysDate.setText(TodaysDateS);
 
-            @Override
-            public void onError(@NonNull Throwable e) {
-                Log.e(TAG, "onError: ", e);
-            }
+                    CurrentTemperature.setText(String.valueOf(weatherForecast.getCurrent().getTempC()));
+                    CurrentCity.setText(weatherForecast.getLocation().getName() + ", " + weatherForecast.getLocation().getCountry());
+                    FeelsLikeTemp.setText("Feels like " + weatherForecast.getCurrent().getFeelslikeC());
+                    TopTemp.setText(String.valueOf(weatherForecast.getForecast().getForecastday().get(0).getDay().getMaxtempC()));
+                    LowTemp.setText(String.valueOf(weatherForecast.getForecast().getForecastday().get(0).getDay().getMintempC()));
+                    SunriseTime.setText(String.valueOf(weatherForecast.getForecast().getForecastday().get(0).getAstro().getSunrise()));
+                    SunsetTime.setText(String.valueOf(weatherForecast.getForecast().getForecastday().get(0).getAstro().getSunset()));
+                    Log.d(TAG, "onNext: " + weatherForecast.getForecast().getForecastday().get(0).getAstro().getSunset());
+                    Precipitation.setText(weatherForecast.getCurrent().getPrecipMm() + "%");
+                    Humidity.setText(weatherForecast.getCurrent().getHumidity() + "%");
+                    Wind.setText(weatherForecast.getCurrent().getWindKph() + " km/h");
+                    Pressure.setText(weatherForecast.getCurrent().getPressureMb() + " hPa");
 
-            @Override
-            public void onComplete() {
+
+                    initRecyclerViewWeatherForecast();
+                    progressBar.setVisibility(View.INVISIBLE);
+
+                }
+
+                @Override
+                public void onError(@NonNull Throwable e) {
+
+                    Log.e(TAG, "onError: ", e);
+                    Log.d(TAG, "Test: " + e);
+                }
+
+                @Override
+                public void onComplete() {
 
 
-            }
-        });
+                }
+            });
 
-
-
+        } else {
+            onFailureFromRepo();
+        }
 
 
 
@@ -202,6 +218,17 @@ public class HomeFragment extends Fragment {
 
         }
 
+
+    }
+
+
+    private void onFailureFromRepo() {
+
+        TextView nowifistring = requireView().findViewById(R.id.home_nowifistring_string);
+        ProgressBar progressBar = requireView().findViewById(R.id.home_progressbar_progressbar);
+
+        nowifistring.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
 
     }
 
@@ -269,7 +296,7 @@ public class HomeFragment extends Fragment {
 
     // Location
     public String getLocation() {
-        GPSLocation gpsLocation = new GPSLocation(getActivity());
+        GPSLocation gpsLocation = new GPSLocation(requireActivity());
         if (gpsLocation.canGetLocation()) {
             double latitude = gpsLocation.getLatitude();
             double longitude = gpsLocation.getLongitude();
@@ -309,6 +336,25 @@ public class HomeFragment extends Fragment {
     public void onPause() {
         super.onPause();
         mDisposable.clear();
+    }
+
+
+    private boolean haveNetworkConnection() {
+        boolean haveConnectedWifi = false;
+        boolean haveConnectedMobile = false;
+
+
+        ConnectivityManager cm = (ConnectivityManager) requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+        for (NetworkInfo ni : netInfo) {
+            if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+                if (ni.isConnected())
+                    haveConnectedWifi = true;
+            if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+                if (ni.isConnected())
+                    haveConnectedMobile = true;
+        }
+        return haveConnectedWifi || haveConnectedMobile;
     }
 
 }
